@@ -1,59 +1,53 @@
 # RUIFrontendJavierBagatoli
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.18.
+Proyecto generado con [Angular CLI](https://github.com/angular/angular-cli) version 20.3.18.
 
-## Development server
+## Objetivos del proyecto
 
-To start a local development server, run:
+Demostrar conocimientos en angular.
 
-```bash
-ng serve
-```
+Herramientas utilizadas:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular
+- Material Angular para el thema de colores y configuracion de SCSS
+- Jest ya que es la suite base de angular.
 
-## Code scaffolding
+### Interfaz de comunicación
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+POST: AddHero
+GET: GetAllHeroes
+GET: GetHero/:name
+GET: GetHeroFilter/:name
+PUT: UpdateHero
+DELETE: DeleteHero
 
-```bash
-ng generate component component-name
-```
+### Objeto sobre el que desarrollare el ejercicio.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+name: string,
+state: boolean,
+age: number,
+description: string,
+id: number,
 
-```bash
-ng generate --help
-```
+### Paginas
 
-## Building
+#### Home
 
-To build the project run:
+- Tabla de heroes, cada row muestra editar y borrar
+- Sobre la tabla se tiene le boton de agregar. => crear dialog crear/editar
 
-```bash
-ng build
-```
+#### Dialog Add Hero
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Add Hero / Edit Hero
+name
+age
+description
 
-## Running unit tests
+#### Dialog Delete
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+¿Desea borrar _Nombre_?
+Si No
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+=================
+Los datos seran almacenados en la chace del programa, pero se leen desde un JSON al iniciar.
+Se agregara un timing para simular las latencias entre un front y back.
