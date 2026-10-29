@@ -32,6 +32,15 @@ importers:
       '@angular/router':
         specifier: ^20.3.0
         version: 20.3.34(@angular/common@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(@angular/platform-browser@20.3.34(@angular/common@20.3.34(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@ngrx/effects':
+        specifier: ^20.1.0
+        version: 20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(@ngrx/store@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
+      '@ngrx/store':
+        specifier: ^20.1.0
+        version: 20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@ngrx/store-devtools':
+        specifier: ^20.1.0
+        version: 20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(@ngrx/store@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -2174,6 +2183,26 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1 || 2.0.0-beta.2
       '@emnapi/runtime': ^1.7.1 || 2.0.0-beta.2
+
+  '@ngrx/effects@20.1.0':
+    resolution: {integrity: sha512-wkIu0QnTarBd1zUswk643H5SILO9Be1OeswMe7g4tXlkNLFRPkyu0BUzXT80PsUPP5p0VrdFz3akrn3HHjjTjA==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      '@ngrx/store': 20.1.0
+      rxjs: ^6.5.3 || ^7.5.0
+
+  '@ngrx/store-devtools@20.1.0':
+    resolution: {integrity: sha512-4N6X/uAfjiCFcuauX2gG+6TnDAuixrfMfUVebLYvifLkrDmqDO8lbeH+Lhk3EVGnpUih4yJiCaU437awVyKckw==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      '@ngrx/store': 20.1.0
+      rxjs: ^6.5.3 || ^7.5.0
+
+  '@ngrx/store@20.1.0':
+    resolution: {integrity: sha512-o8j3CGAGedm+BIb+QDhNXrVaU//n9uF0wH0HZWtXHmW1mjRBaQiUA+ZPMUkDwAeN8KuOcoIEC+2QUXxXGVI7ow==}
+    peerDependencies:
+      '@angular/core': ^20.0.0
+      rxjs: ^6.5.3 || ^7.5.0
 
   '@ngtools/webpack@22.2.4':
     resolution: {integrity: sha512-ClbCUEntGUHWGotW65Vxc3VowIGV5LvhNmBYYQANK3s1uixg6zPchxKuL31xOBXR/+SNgM2ILF5hIQHAW8+Kjg==}
@@ -7043,7 +7072,7 @@ snapshots:
   '@babel/core@8.0.5':
     dependencies:
       '@babel/code-frame': 8.0.6
-      '@babel/generator': 8.0.5
+      '@babel/generator': 8.0.6
       '@babel/helper-compilation-targets': 8.0.7
       '@babel/helpers': 8.0.8
       '@babel/parser': 8.0.8
@@ -8703,6 +8732,26 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
+  '@ngrx/effects@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(@ngrx/store@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/core': 20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)
+      '@ngrx/store': 20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2)
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@ngrx/store-devtools@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(@ngrx/store@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/core': 20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)
+      '@ngrx/store': 20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2)
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@ngrx/store@20.1.0(@angular/core@20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/core': 20.3.34(@angular/compiler@20.3.34)(rxjs@7.8.2)
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
   '@ngtools/webpack@22.2.4(@angular/compiler-cli@20.3.34(@angular/compiler@20.3.34)(supports-color@8.1.1)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))':
     dependencies:
       '@angular/compiler-cli': 20.3.34(@angular/compiler@20.3.34)(supports-color@8.1.1)(typescript@5.9.3)
@@ -9679,9 +9728,9 @@ snapshots:
       domhandler: 6.0.1
       htmlparser2: 12.0.0
       picocolors: 1.1.1
-      postcss: 8.5.28
+      postcss: 8.5.32
       postcss-media-query-parser: 0.2.3
-      postcss-safe-parser: 7.1.0(postcss@8.5.28)
+      postcss-safe-parser: 7.1.0(postcss@8.5.32)
 
   bidi-js@1.1.0:
     dependencies:
@@ -9987,12 +10036,12 @@ snapshots:
 
   css-loader@7.1.5(webpack@5.112.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.28)
-      postcss: 8.5.28
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.28)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.28)
-      postcss-modules-scope: 3.2.1(postcss@8.5.28)
-      postcss-modules-values: 4.0.0(postcss@8.5.28)
+      icss-utils: 5.1.0(postcss@8.5.32)
+      postcss: 8.5.32
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.32)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.32)
+      postcss-modules-scope: 3.2.1(postcss@8.5.32)
+      postcss-modules-values: 4.0.0(postcss@8.5.32)
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
@@ -10673,9 +10722,9 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  icss-utils@5.1.0(postcss@8.5.28):
+  icss-utils@5.1.0(postcss@8.5.32):
     dependencies:
-      postcss: 8.5.28
+      postcss: 8.5.32
 
   ignore-walk@8.0.0:
     dependencies:
@@ -12062,30 +12111,30 @@ snapshots:
 
   postcss-media-query-parser@0.2.3: {}
 
-  postcss-modules-extract-imports@3.1.0(postcss@8.5.28):
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.32):
     dependencies:
-      postcss: 8.5.28
+      postcss: 8.5.32
 
-  postcss-modules-local-by-default@4.2.0(postcss@8.5.28):
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.32):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.28)
-      postcss: 8.5.28
+      icss-utils: 5.1.0(postcss@8.5.32)
+      postcss: 8.5.32
       postcss-selector-parser: 7.1.7
       postcss-value-parser: 4.2.0
 
-  postcss-modules-scope@3.2.1(postcss@8.5.28):
+  postcss-modules-scope@3.2.1(postcss@8.5.32):
     dependencies:
-      postcss: 8.5.28
+      postcss: 8.5.32
       postcss-selector-parser: 7.1.7
 
-  postcss-modules-values@4.0.0(postcss@8.5.28):
+  postcss-modules-values@4.0.0(postcss@8.5.32):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.28)
-      postcss: 8.5.28
+      icss-utils: 5.1.0(postcss@8.5.32)
+      postcss: 8.5.32
 
-  postcss-safe-parser@7.1.0(postcss@8.5.28):
+  postcss-safe-parser@7.1.0(postcss@8.5.32):
     dependencies:
-      postcss: 8.5.28
+      postcss: 8.5.32
 
   postcss-selector-parser@7.1.7:
     dependencies:
@@ -12235,7 +12284,7 @@ snapshots:
       adjust-sourcemap-loader: 4.0.0
       convert-source-map: 1.9.0
       loader-utils: 2.0.4
-      postcss: 8.5.28
+      postcss: 8.5.32
       source-map: 0.6.1
 
   resolve@1.22.10:
@@ -12970,7 +13019,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
-      postcss: 8.5.28
+      postcss: 8.5.32
       rolldown: 1.2.8
       tinyglobby: 0.2.17
     optionalDependencies:
