@@ -1,0 +1,6 @@
+<h2 mat-dialog-title><span>¿Borrar </span>{{ `${data.name}` }} <span>?</span></h2>
+
+<mat-dialog-actions>
+  <button matButton (click)="onNoClick()">Descartar</button>
+  <button matButton [mat-dialog-close]="animal()" cdkFocusInitial>Borrar</button>
+</mat-dialog-actions>

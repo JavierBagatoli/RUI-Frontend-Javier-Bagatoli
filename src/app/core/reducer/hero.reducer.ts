@@ -4,11 +4,6 @@ import { HeroeState } from '../interface/hero.store.interface';
 
 export const initialState: HeroeState = {
   data: [],
-  taskIdToDelete: null,
-  isOpenModal: false,
-  isLoadingMemory: false,
-  slotListFavourite: -1,
-  slotToDelete: -1,
 };
 
 export const taskReducer = createReducer(

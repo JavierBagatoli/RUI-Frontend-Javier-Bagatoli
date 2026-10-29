@@ -44,3 +44,40 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.content {
+  padding: 1rem;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.gap {
+  gap: 1rem;
+}
+
+.gap-05 {
+  gap: 0.5rem;
+}
+
+.button-primary {
+  background: rgb(0, 153, 255);
+  padding: 0.5rem;
+}
+
+.button-secondary {
+  background: rgb(84, 138, 133);
+  padding: 0.5rem;
+}
+
+.button-error {
+  background: red;
+  padding: 0.5rem;
+}
