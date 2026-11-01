@@ -1,4 +1,4 @@
-import { Component, inject, input, Input, model, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, input, Input, model, OnInit, signal } from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
 import { FormsModule } from '@angular/forms';
 import {
@@ -35,6 +35,13 @@ export class AddEditHeroComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<AddEditHeroComponent>);
   readonly data = inject<HeroI>(MAT_DIALOG_DATA);
   readonly animal = model('');
+
+  readonly nameHero = computed(() => {
+    if (!this.data) {
+      return '';
+    }
+    return this.data.name;
+  });
 
   ngOnInit(): void {
     if (this.data !== null) {
