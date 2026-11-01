@@ -36,6 +36,7 @@ export class heroService extends ApiService<HeroI, HeroI> {
   }
 
   updateHero(hero: HeroI) {
+    console.log('hola', hero);
     this.heroes = this.heroes.map((h) => {
       if (h.id === hero.id) {
         h = hero;

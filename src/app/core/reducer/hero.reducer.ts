@@ -35,7 +35,6 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        ...state.getHeroes,
         data: [],
         error: null,
         loading: true,
@@ -47,7 +46,6 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        ...state.getHeroes,
         data: data,
         error: null,
         loading: false,
@@ -59,7 +57,6 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        ...state.getHeroes,
         data: [],
         error: genericErrorI,
         loading: false,
@@ -73,13 +70,64 @@ export const heroReducer = createReducer(
     };
   }),
 
+  on(heroActions.addHeroSuccess, (state): HeroState => {
+    return {
+      ...state,
+      getHeroes: {
+        data: [],
+        error: null,
+        loading: true,
+      },
+    };
+  }),
+
+  on(heroActions.addHeroError, (state): HeroState => {
+    return {
+      ...state,
+    };
+  }),
+
   on(heroActions.updateHero, (state): HeroState => {
     return {
       ...state,
     };
   }),
 
+  on(heroActions.updateHeroSuccess, (state): HeroState => {
+    return {
+      ...state,
+      getHeroes: {
+        data: [],
+        error: null,
+        loading: true,
+      },
+    };
+  }),
+
+  on(heroActions.updateHeroError, (state): HeroState => {
+    return {
+      ...state,
+    };
+  }),
+
   on(heroActions.deleteHero, (state): HeroState => {
+    return {
+      ...state,
+    };
+  }),
+
+  on(heroActions.deleteHeroSuccess, (state): HeroState => {
+    return {
+      ...state,
+      getHeroes: {
+        data: [],
+        error: null,
+        loading: true,
+      },
+    };
+  }),
+
+  on(heroActions.deleteHeroError, (state): HeroState => {
     return {
       ...state,
     };
