@@ -1,6 +1,12 @@
 import { Component, computed, inject, input, Input, model, OnInit, signal } from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -13,7 +19,10 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormHeroComponent } from '../form-hero/form-hero.component';
+import { heroService } from '../../../core/service/hero.service';
+import { Store } from '@ngrx/store';
+import { HeroState } from '../../../core/interface/hero.store.interface';
+import { heroActions } from '../../../core/action/hero.action';
 
 @Component({
   selector: 'add-edit-hero',
@@ -25,7 +34,7 @@ import { FormHeroComponent } from '../form-hero/form-hero.component';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose,
+    ReactiveFormsModule,
   ],
   templateUrl: './add-edit-hero.component.html',
   styleUrl: './add-edit-hero.component.scss',
@@ -34,7 +43,19 @@ export class AddEditHeroComponent implements OnInit {
   protected isCreate = signal<boolean>(true);
   readonly dialogRef = inject(MatDialogRef<AddEditHeroComponent>);
   readonly data = inject<HeroI>(MAT_DIALOG_DATA);
+  heroService = inject(heroService);
+  private readonly heroStore = inject(Store<{ hero: HeroState }>);
+
   readonly animal = model('');
+
+  public heroForm = new FormGroup({
+    name: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
+    state: new FormControl<boolean>(false),
+    age: new FormControl<number | null>(null, [Validators.required]),
+    description: new FormControl<string>(''),
+    power: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
+    id: new FormControl<number | null>(null),
+  });
 
   readonly nameHero = computed(() => {
     if (!this.data) {
@@ -53,5 +74,11 @@ export class AddEditHeroComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onYesClick(): void {
+    if (this.heroForm.valid) {
+      this.heroStore.dispatch(heroActions.addHero(this.heroForm.value as HeroI));
+    }
   }
 }

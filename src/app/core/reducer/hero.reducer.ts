@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { heroActions } from '../action/hero.action';
-import { HeroeState } from '../interface/hero.store.interface';
+import { HeroState } from '../interface/hero.store.interface';
 
-export const initialState: HeroeState = {
+export const initialState: HeroState = {
   data: [],
 };
 

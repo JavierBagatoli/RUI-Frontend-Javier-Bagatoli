@@ -6,6 +6,7 @@ export const HEROS: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
+    power: 'volar',
     id: 0,
   },
   {
@@ -13,6 +14,7 @@ export const HEROS: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
+    power: 'volar',
     id: 1,
   },
   {
@@ -20,6 +22,7 @@ export const HEROS: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
+    power: 'volar',
     id: 2,
   },
   {
@@ -27,6 +30,7 @@ export const HEROS: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
+    power: 'volar',
     id: 3,
   },
   {
@@ -34,6 +38,7 @@ export const HEROS: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
+    power: 'volar',
     id: 4,
   },
   {
@@ -41,6 +46,7 @@ export const HEROS: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
+    power: 'volar',
     id: 5,
   },
 ];

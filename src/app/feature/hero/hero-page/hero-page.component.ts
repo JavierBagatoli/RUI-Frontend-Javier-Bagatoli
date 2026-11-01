@@ -5,6 +5,7 @@ import { AddEditHeroComponent } from '../add-edit-hero/add-edit-hero.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { HeroTableComponent } from '../hero-table/hero-table.component';
+import { HEROS } from '../../../core/service/fakeData';
 
 @Component({
   selector: 'hero-page',
@@ -14,36 +15,7 @@ import { HeroTableComponent } from '../hero-table/hero-table.component';
 })
 export class HeroPage {
   readonly dialog = inject(MatDialog);
-  public readonly dataTable: HeroI[] = [
-    {
-      id: 0,
-      name: 'string',
-      state: true,
-      age: 12,
-      description: 'string',
-    },
-    {
-      id: 1,
-      name: 'string1',
-      state: true,
-      age: 12,
-      description: 'string',
-    },
-    {
-      id: 2,
-      name: 'string2',
-      state: true,
-      age: 12,
-      description: 'string',
-    },
-    {
-      id: 3,
-      name: 'string3',
-      state: true,
-      age: 12,
-      description: 'string',
-    },
-  ];
+  public readonly dataTable: HeroI[] = HEROS;
 
   openAddHero(): void {
     const dialogRef = this.dialog.open(AddEditHeroComponent, {

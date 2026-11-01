@@ -3,5 +3,6 @@ export interface HeroI {
   state: boolean;
   age: number;
   description: string;
-  id: number;
+  id: number | null;
+  power: string;
 }

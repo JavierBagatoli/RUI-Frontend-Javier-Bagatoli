@@ -1,42 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { HeroI } from '../interface/hero.interface';
 import { ApiService } from './api.service';
+import { HEROS } from './fakeData';
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsuariosService extends ApiService<HeroI, HeroI> {
+export class heroService extends ApiService<HeroI, HeroI> {
   constructor(http: HttpClient) {
     super(http, 'hero');
   }
 
-  getHeroes() {
+  getHeroes(): Observable<HeroI[]> {
+    return of(HEROS).pipe(delay(300));
+    /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
       next: (data) => data,
       error: (error) => error,
-    });
+    });*/
   }
 
-  postHero(hero: HeroI) {
+  addHero(_hero: HeroI) {
+    return of({ code: 200, info: 'success' }).pipe(delay(300));
+    /* Ejemplo de como se usaria el API service
     return this.post(hero).subscribe({
       next: (data) => data,
       error: (error) => error,
-    });
+    });*/
   }
 
-  putHero(hero: HeroI) {
+  updateHero(_hero: HeroI) {
+    return of({ code: 200, info: 'success' }).pipe(delay(300));
+    /* Ejemplo de como se usaria el API service
     return this.put(hero).subscribe({
       next: (data) => data,
       error: (error) => error,
-    });
+    });*/
   }
 
-  deleteHero(id: number) {
+  deleteHero(_id: number) {
+    return of({ code: 200, info: 'success' }).pipe(delay(300));
+    /* Ejemplo de como se usaria el API service
     return this.delete(id).subscribe({
       next: (data) => data,
       error: (error) => error,
-    });
+    });*/
   }
 }
