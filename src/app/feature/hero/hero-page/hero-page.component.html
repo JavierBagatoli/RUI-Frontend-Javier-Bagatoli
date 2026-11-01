@@ -2,5 +2,9 @@
   <div style="display: flex; flex-direction: row-reverse">
     <button matButton="filled" (click)="openAddHero()">Agregar Heroe</button>
   </div>
-  <hero-table [data]="dataTable"></hero-table>
+  @if (dataTable().loading) {
+    <h2>loading</h2>
+  } @else {
+    <hero-table [data]="dataTable().data"></hero-table>
+  }
 </div>

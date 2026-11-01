@@ -1,6 +1,6 @@
 import { HeroI } from '../interface/hero.interface';
 
-export const HEROS: HeroI[] = [
+export const HEROES: HeroI[] = [
   {
     name: 'Super Man',
     state: true,

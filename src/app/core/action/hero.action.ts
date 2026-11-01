@@ -6,19 +6,19 @@ export const heroActions = createActionGroup({
   source: 'Hero',
   events: {
     Restart: emptyProps(),
-    'Get Heros': emptyProps(),
-    'Get Heros Success': props<{ data: HeroI[] }>(),
-    'Get Heros Error': props<genericErrorI>(),
+    'Get Heroes': emptyProps(),
+    'Get Heroes Success': props<{ data: HeroI[] }>(),
+    'Get Heroes Error': props<genericErrorI>(),
 
-    'Add Hero': props<HeroI>(),
+    'Add Hero': props<{ data: HeroI }>(),
     'Add Hero Success': emptyProps(),
     'Add Hero Error': props<genericErrorI>(),
 
-    'Update Hero': props<HeroI>(),
+    'Update Hero': props<{ data: HeroI }>(),
     'Update Hero Success': emptyProps(),
     'Update Hero Error': props<genericErrorI>(),
 
-    'Delete Hero': props<{ id: number }>(),
+    'Delete Hero': props<{ data: number }>(),
     'Delete Hero Success': emptyProps(),
     'Delete Hero Error': props<genericErrorI>(),
   },

@@ -23,6 +23,7 @@ import { heroService } from '../../../core/service/hero.service';
 import { Store } from '@ngrx/store';
 import { HeroState } from '../../../core/interface/hero.store.interface';
 import { heroActions } from '../../../core/action/hero.action';
+import { HeroEffects } from '../../../core/effect/hero.effect';
 
 @Component({
   selector: 'add-edit-hero',
@@ -38,19 +39,19 @@ import { heroActions } from '../../../core/action/hero.action';
   ],
   templateUrl: './add-edit-hero.component.html',
   styleUrl: './add-edit-hero.component.scss',
+  providers: [HeroEffects],
 })
 export class AddEditHeroComponent implements OnInit {
   protected isCreate = signal<boolean>(true);
   readonly dialogRef = inject(MatDialogRef<AddEditHeroComponent>);
   readonly data = inject<HeroI>(MAT_DIALOG_DATA);
-  heroService = inject(heroService);
   private readonly heroStore = inject(Store<{ hero: HeroState }>);
 
   readonly animal = model('');
 
   public heroForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
-    state: new FormControl<boolean>(false),
+    state: new FormControl<boolean>(true),
     age: new FormControl<number | null>(null, [Validators.required]),
     description: new FormControl<string>(''),
     power: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
@@ -67,6 +68,7 @@ export class AddEditHeroComponent implements OnInit {
   ngOnInit(): void {
     if (this.data !== null) {
       this.isCreate.set(false);
+      this.loadDataForm();
     } else {
       this.isCreate.set(true);
     }
@@ -77,8 +79,21 @@ export class AddEditHeroComponent implements OnInit {
   }
 
   onYesClick(): void {
-    if (this.heroForm.valid) {
-      this.heroStore.dispatch(heroActions.addHero(this.heroForm.value as HeroI));
+    if (this.heroForm.invalid) return;
+
+    if (!this.heroForm.get('id')!.value) {
+      if (this.heroForm.valid) {
+        this.heroStore.dispatch(heroActions.addHero({ data: this.heroForm.value as HeroI }));
+      }
+      this.dialogRef.close();
+      return;
     }
+
+    this.heroStore.dispatch(heroActions.updateHero({ data: this.heroForm.value as HeroI }));
+    this.dialogRef.close();
+  }
+
+  private loadDataForm(): void {
+    this.heroForm.setValue(this.data);
   }
 }

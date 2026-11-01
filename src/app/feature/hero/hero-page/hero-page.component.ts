@@ -1,11 +1,15 @@
-import { Component, inject, input, Input, signal } from '@angular/core';
+import { Component, inject, input, Input, OnInit, signal } from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
 import { MatTableModule } from '@angular/material/table';
 import { AddEditHeroComponent } from '../add-edit-hero/add-edit-hero.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { HeroTableComponent } from '../hero-table/hero-table.component';
-import { HEROS } from '../../../core/service/fakeData';
+import { HEROES } from '../../../core/service/fakeData';
+import { selectHeroData } from '../../../core/selector/hero.selector';
+import { Store } from '@ngrx/store';
+import { HeroState } from '../../../core/interface/hero.store.interface';
+import { heroActions } from '../../../core/action/hero.action';
 
 @Component({
   selector: 'hero-page',
@@ -13,9 +17,16 @@ import { HEROS } from '../../../core/service/fakeData';
   templateUrl: './hero-page.component.html',
   styleUrl: './hero-page.component.scss',
 })
-export class HeroPage {
+export class HeroPage implements OnInit {
   readonly dialog = inject(MatDialog);
-  public readonly dataTable: HeroI[] = HEROS;
+  private readonly heroStore = inject(Store<HeroState>);
+
+  public readonly dataTable = this.heroStore.selectSignal(selectHeroData);
+
+  ngOnInit(): void {
+    this.heroStore.dispatch(heroActions.getHeroes());
+    console.log('hola');
+  }
 
   openAddHero(): void {
     const dialogRef = this.dialog.open(AddEditHeroComponent, {

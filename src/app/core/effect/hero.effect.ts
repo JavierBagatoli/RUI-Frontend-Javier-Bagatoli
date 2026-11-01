@@ -5,21 +5,27 @@ import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { heroService } from '../service/hero.service';
 import { heroActions } from '../action/hero.action';
 import { HeroI } from '../interface/hero.interface';
+import { genericAction } from '../interface/hero.store.interface';
 
 @Injectable()
-export class MoviesEffects {
+export class HeroEffects {
   private actions$ = inject(Actions);
   private heroService = inject(heroService);
 
   loadHeroes$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(heroActions.getHeros),
+      ofType(
+        heroActions.getHeroes,
+        heroActions.addHeroSuccess,
+        heroActions.deleteHeroSuccess,
+        heroActions.updateHeroSuccess,
+      ),
       exhaustMap(() =>
         this.heroService.getHeroes().pipe(
           map(
-            (data: HeroI[]) => heroActions.getHerosSuccess({ data: data }),
+            (data: HeroI[]) => heroActions.getHeroesSuccess({ data: data }),
             catchError(() => {
-              heroActions.getHerosError({
+              heroActions.getHeroesError({
                 code: 1500,
                 info: '',
               });
@@ -34,11 +40,11 @@ export class MoviesEffects {
   addHeroe$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.addHero),
-      exhaustMap((val: HeroI) =>
-        this.heroService.addHero(val).pipe(
+      exhaustMap((val: genericAction<HeroI>) =>
+        this.heroService.addHero(val.data).pipe(
           map((data) => heroActions.addHeroSuccess()),
           catchError(() => {
-            heroActions.getHerosError({
+            heroActions.addHeroError({
               code: 1500,
               info: '',
             });
@@ -52,11 +58,11 @@ export class MoviesEffects {
   updateHeroe$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.updateHero),
-      exhaustMap((val: HeroI) =>
-        this.heroService.updateHero(val).pipe(
+      exhaustMap((val: genericAction<HeroI>) =>
+        this.heroService.updateHero(val.data).pipe(
           map((data) => heroActions.updateHeroSuccess()),
           catchError(() => {
-            heroActions.getHerosError({
+            heroActions.updateHeroError({
               code: 1500,
               info: '',
             });
@@ -70,11 +76,11 @@ export class MoviesEffects {
   deleteHeroe$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.deleteHero),
-      exhaustMap((data: { id: number }) =>
-        this.heroService.deleteHero(data.id).pipe(
+      exhaustMap((val: genericAction<number>) =>
+        this.heroService.deleteHero(val.data).pipe(
           map((_data) => heroActions.deleteHeroSuccess()),
           catchError(() => {
-            heroActions.getHerosError({
+            heroActions.deleteHeroError({
               code: 1500,
               info: '',
             });

@@ -3,40 +3,85 @@ import { heroActions } from '../action/hero.action';
 import { HeroState } from '../interface/hero.store.interface';
 
 export const initialState: HeroState = {
-  data: [],
+  getHeroes: {
+    data: [],
+    loading: false,
+    error: null,
+  },
+  addHero: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  updateHero: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  deleteHero: {
+    data: null,
+    loading: false,
+    error: null,
+  },
 };
 
-export const taskReducer = createReducer(
+export const heroReducer = createReducer(
   initialState,
   on(heroActions.restart, () => {
     return initialState;
   }),
 
-  on(heroActions.getHeros, (state) => {
+  on(heroActions.getHeroes, (state): HeroState => {
     return {
       ...state,
-      data: [],
+      getHeroes: {
+        ...state.getHeroes,
+        data: [],
+        error: null,
+        loading: true,
+      },
     };
   }),
 
-  on(heroActions.addHero, (state) => {
+  on(heroActions.getHeroesSuccess, (state, { data }): HeroState => {
     return {
       ...state,
-      data: [],
+      getHeroes: {
+        ...state.getHeroes,
+        data: data,
+        error: null,
+        loading: false,
+      },
     };
   }),
 
-  on(heroActions.updateHero, (state) => {
+  on(heroActions.getHeroesError, (state, { ...genericErrorI }): HeroState => {
     return {
       ...state,
-      data: [],
+      getHeroes: {
+        ...state.getHeroes,
+        data: [],
+        error: genericErrorI,
+        loading: false,
+      },
     };
   }),
 
-  on(heroActions.deleteHero, (state) => {
+  on(heroActions.addHero, (state): HeroState => {
     return {
       ...state,
-      data: [],
+    };
+  }),
+
+  on(heroActions.updateHero, (state): HeroState => {
+    return {
+      ...state,
+    };
+  }),
+
+  on(heroActions.deleteHero, (state): HeroState => {
+    return {
+      ...state,
     };
   }),
 );

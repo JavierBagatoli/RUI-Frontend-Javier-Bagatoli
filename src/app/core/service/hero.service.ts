@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeroI } from '../interface/hero.interface';
 import { ApiService } from './api.service';
-import { HEROS } from './fakeData';
+import { HEROES } from './fakeData';
 import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class heroService extends ApiService<HeroI, HeroI> {
+  private heroes: HeroI[] = JSON.parse(JSON.stringify(HEROES));
   constructor(http: HttpClient) {
     super(http, 'hero');
   }
 
   getHeroes(): Observable<HeroI[]> {
-    return of(HEROS).pipe(delay(300));
+    return of(this.heroes).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
       next: (data) => data,
@@ -22,7 +23,10 @@ export class heroService extends ApiService<HeroI, HeroI> {
     });*/
   }
 
-  addHero(_hero: HeroI) {
+  addHero(hero: HeroI) {
+    const newHero: HeroI = { ...hero, id: this.heroes.length + 1 };
+    console.log(this.heroes, newHero);
+    this.heroes = [...this.heroes, newHero];
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.post(hero).subscribe({
@@ -31,7 +35,13 @@ export class heroService extends ApiService<HeroI, HeroI> {
     });*/
   }
 
-  updateHero(_hero: HeroI) {
+  updateHero(hero: HeroI) {
+    this.heroes = this.heroes.map((h) => {
+      if (h.id === hero.id) {
+        h = hero;
+      }
+      return h;
+    });
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.put(hero).subscribe({
@@ -40,7 +50,8 @@ export class heroService extends ApiService<HeroI, HeroI> {
     });*/
   }
 
-  deleteHero(_id: number) {
+  deleteHero(id: number) {
+    this.heroes = this.heroes.filter((v) => v.id !== id);
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.delete(id).subscribe({
