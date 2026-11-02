@@ -1,10 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
 import { heroActions } from '../action/hero.action';
-import { HeroState } from '../interface/hero.store.interface';
+import { HeroState, pagination } from '../interface/hero.store.interface';
+import { HeroI } from '../interface/hero.interface';
+
+const PAGINATION_CLEAN: pagination<HeroI> = {
+  vector: [],
+  size: 0,
+};
 
 export const initialState: HeroState = {
+  paginationHeroes: {
+    index: 0,
+    size: 5,
+  },
   getHeroes: {
-    data: [],
+    data: PAGINATION_CLEAN,
     loading: false,
     error: null,
   },
@@ -31,11 +41,17 @@ export const heroReducer = createReducer(
     return initialState;
   }),
 
+  on(heroActions.getHeroes, (state, data): HeroState => {
+    return {
+      ...state,
+      paginationHeroes: data.data,
+    };
+  }),
   on(heroActions.getHeroes, (state): HeroState => {
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: null,
         loading: true,
       },
@@ -57,7 +73,7 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: genericErrorI,
         loading: false,
       },
@@ -68,7 +84,7 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: null,
         loading: true,
       },
@@ -90,7 +106,7 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: genericErrorI,
         loading: false,
       },
@@ -107,7 +123,7 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: null,
         loading: true,
       },
@@ -130,7 +146,7 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: null,
         loading: true,
       },
@@ -153,7 +169,7 @@ export const heroReducer = createReducer(
     return {
       ...state,
       getHeroes: {
-        data: [],
+        data: PAGINATION_CLEAN,
         error: null,
         loading: true,
       },

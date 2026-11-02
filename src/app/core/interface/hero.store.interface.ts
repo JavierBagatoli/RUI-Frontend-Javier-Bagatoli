@@ -1,7 +1,9 @@
+import { paginationRequest } from '../action/hero.action';
 import { HeroI } from './hero.interface';
 
 export interface HeroState {
-  getHeroes: vectorControlState<HeroI>;
+  paginationHeroes: paginationRequest;
+  getHeroes: dataControlState<pagination<HeroI>>;
   addHero: dataControlState<HeroI>;
   updateHero: dataControlState<HeroI>;
   deleteHero: dataControlState<HeroI>;
@@ -27,4 +29,9 @@ export interface genericErrorI {
 export interface genericAction<T> {
   type: string;
   data: T;
+}
+
+export interface pagination<T> {
+  vector: T[];
+  size: number;
 }

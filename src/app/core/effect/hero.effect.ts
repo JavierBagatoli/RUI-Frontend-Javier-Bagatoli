@@ -5,7 +5,7 @@ import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { heroService } from '../service/hero.service';
 import { heroActions } from '../action/hero.action';
 import { HeroI } from '../interface/hero.interface';
-import { genericAction } from '../interface/hero.store.interface';
+import { genericAction, pagination } from '../interface/hero.store.interface';
 
 @Injectable()
 export class HeroEffects {
@@ -14,16 +14,35 @@ export class HeroEffects {
 
   loadHeroes$ = createEffect(() => {
     return this.actions$.pipe(
+      ofType(heroActions.getHeroes),
+      exhaustMap((val) =>
+        this.heroService.getHeroes(val.data).pipe(
+          map(
+            (data: pagination<HeroI>) => heroActions.getHeroesSuccess({ data }),
+            catchError(() => {
+              heroActions.getHeroesError({
+                code: 1500,
+                info: '',
+              });
+              return EMPTY;
+            }),
+          ),
+        ),
+      ),
+    );
+  });
+
+  autoLoad$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(
-        heroActions.getHeroes,
         heroActions.addHeroSuccess,
         heroActions.deleteHeroSuccess,
         heroActions.updateHeroSuccess,
       ),
-      exhaustMap(() =>
-        this.heroService.getHeroes().pipe(
+      exhaustMap((val) =>
+        this.heroService.getHeroes({ size: 5, index: 0 }).pipe(
           map(
-            (data: HeroI[]) => heroActions.getHeroesSuccess({ data: data }),
+            (data: pagination<HeroI>) => heroActions.getHeroesSuccess({ data: data }),
             catchError(() => {
               heroActions.getHeroesError({
                 code: 1500,
@@ -43,7 +62,7 @@ export class HeroEffects {
       exhaustMap((val) =>
         this.heroService.getFilteredHeroes(val.data).pipe(
           map(
-            (data: HeroI[]) => heroActions.filterHeroesSuccess({ data: data }),
+            (data: pagination<HeroI>) => heroActions.filterHeroesSuccess({ data: data }),
             catchError(() => {
               heroActions.filterHeroesError({
                 code: 1500,

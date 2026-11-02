@@ -1,17 +1,19 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { HeroI } from '../interface/hero.interface';
-import { genericErrorI } from '../interface/hero.store.interface';
+import { genericErrorI, pagination } from '../interface/hero.store.interface';
 
 export const heroActions = createActionGroup({
   source: 'Hero',
   events: {
     Restart: emptyProps(),
-    'Get Heroes': emptyProps(),
-    'Get Heroes Success': props<{ data: HeroI[] }>(),
+    'Set Pagination': props<paginationRequest>(),
+
+    'Get Heroes': props<{ data: paginationRequest }>(),
+    'Get Heroes Success': props<{ data: pagination<HeroI> }>(),
     'Get Heroes Error': props<genericErrorI>(),
 
     'Filter Heroes': props<{ data: string }>(),
-    'Filter Heroes Success': props<{ data: HeroI[] }>(),
+    'Filter Heroes Success': props<{ data: pagination<HeroI> }>(),
     'Filter Heroes Error': props<genericErrorI>(),
 
     'Add Hero': props<{ data: HeroI }>(),
@@ -27,3 +29,8 @@ export const heroActions = createActionGroup({
     'Delete Hero Error': props<genericErrorI>(),
   },
 });
+
+export interface paginationRequest {
+  index: number;
+  size: number;
+}

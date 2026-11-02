@@ -4,7 +4,7 @@ import { AddEditHeroComponent } from '../add-edit-hero/add-edit-hero.component';
 import { MatDialog, MatDialogContent } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { HeroTableComponent } from '../hero-table/hero-table.component';
-import { selectHeroData } from '../../../core/selector/hero.selector';
+import { selectHeroData, selectHeroDataPagination } from '../../../core/selector/hero.selector';
 import { Store } from '@ngrx/store';
 import { HeroState } from '../../../core/interface/hero.store.interface';
 import { heroActions } from '../../../core/action/hero.action';
@@ -46,9 +46,10 @@ export class HeroPage implements OnInit {
   readonly canSearch = signal<boolean>(false);
   readonly isFilterSearch = signal<boolean>(false);
 
+  readonly pagination = this.heroStore.selectSignal(selectHeroDataPagination);
   ngOnInit(): void {
-    this.heroStore.dispatch(heroActions.getHeroes());
-    this.searchForm.valueChanges.subscribe((val) => {
+    this.heroStore.dispatch(heroActions.getHeroes({ data: { index: 0, size: 5 } }));
+    this.searchForm.valueChanges.subscribe((_val) => {
       const v = this.searchForm.get('name')!.value;
       if (!v) {
         this.canSearch.set(false);
@@ -80,7 +81,7 @@ export class HeroPage implements OnInit {
   }
 
   restartFilter(): void {
-    this.heroStore.dispatch(heroActions.getHeroes());
+    this.heroStore.dispatch(heroActions.getHeroes({ data: { index: 0, size: 5 } }));
     this.isFilterSearch.set(false);
   }
 }

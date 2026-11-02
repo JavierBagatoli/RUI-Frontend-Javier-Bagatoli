@@ -4,6 +4,8 @@ import { HeroI } from '../interface/hero.interface';
 import { ApiService } from './api.service';
 import { HEROES } from './fakeData';
 import { delay, Observable, of } from 'rxjs';
+import { paginationRequest } from '../action/hero.action';
+import { pagination } from '../interface/hero.store.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +16,14 @@ export class heroService extends ApiService<HeroI, HeroI> {
     super(http, 'hero');
   }
 
-  getHeroes(): Observable<HeroI[]> {
-    return of(this.heroes).pipe(delay(700));
+  getHeroes(data: paginationRequest): Observable<pagination<HeroI>> {
+    const index = Math.max(0, Math.floor(data.index ?? 0));
+    const size = Math.max(0, Math.floor(data.size ?? 0));
+    const start = Math.min(index * size, this.heroes.length);
+    const end = Math.min(index * size + size, this.heroes.length);
+    const dataFiltered = this.heroes.slice(start, end);
+
+    return of({ vector: dataFiltered, size: this.heroes.length }).pipe(delay(700));
     /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
       next: (data) => data,
@@ -23,11 +31,11 @@ export class heroService extends ApiService<HeroI, HeroI> {
     });*/
   }
 
-  getFilteredHeroes(name: string): Observable<HeroI[]> {
+  getFilteredHeroes(name: string): Observable<pagination<HeroI>> {
     const filteredList: HeroI[] = this.heroes.filter((v) =>
       v.name.toLowerCase().includes(name.toLowerCase()),
     );
-    return of(filteredList).pipe(delay(700));
+    return of({ vector: filteredList, size: this.heroes.length }).pipe(delay(700));
     /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
       next: (data) => data,
