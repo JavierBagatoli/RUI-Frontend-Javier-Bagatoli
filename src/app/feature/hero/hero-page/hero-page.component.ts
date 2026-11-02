@@ -18,6 +18,7 @@ import {
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'hero-page',
@@ -31,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './hero-page.component.html',
   styleUrl: './hero-page.component.scss',
