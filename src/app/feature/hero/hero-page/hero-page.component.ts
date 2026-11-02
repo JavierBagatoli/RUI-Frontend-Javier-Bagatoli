@@ -10,10 +10,11 @@ import { selectHeroData } from '../../../core/selector/hero.selector';
 import { Store } from '@ngrx/store';
 import { HeroState } from '../../../core/interface/hero.store.interface';
 import { heroActions } from '../../../core/action/hero.action';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'hero-page',
-  imports: [HeroTableComponent, MatButtonModule],
+  imports: [HeroTableComponent, MatButtonModule, MatProgressBarModule],
   templateUrl: './hero-page.component.html',
   styleUrl: './hero-page.component.scss',
 })

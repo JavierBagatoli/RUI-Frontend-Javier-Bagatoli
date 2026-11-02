@@ -25,7 +25,6 @@ import { heroActions } from '../../../core/action/hero.action';
     FormsModule,
     MatButtonModule,
     MatDialogActions,
-    MatDialogClose,
     MatDialogTitle,
   ],
   templateUrl: './delete-hero.component.html',

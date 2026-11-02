@@ -1,3 +1,22 @@
 table {
   width: 100%;
 }
+
+.loader {
+  display: flex;
+  height: 4rem;
+  animation-name: loaderAnimation;
+  animation-duration: 1s;
+}
+
+@keyframes loaderAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}

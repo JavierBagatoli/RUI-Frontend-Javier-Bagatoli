@@ -9,9 +9,7 @@ import {
 } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogActions,
-  MatDialogClose,
   MatDialogContent,
   MatDialogRef,
   MatDialogTitle,
@@ -19,11 +17,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { heroService } from '../../../core/service/hero.service';
 import { Store } from '@ngrx/store';
 import { HeroState } from '../../../core/interface/hero.store.interface';
 import { heroActions } from '../../../core/action/hero.action';
 import { HeroEffects } from '../../../core/effect/hero.effect';
+import { REGEX_0_TO_120 } from '../../../core/regex/regex.const';
 
 @Component({
   selector: 'add-edit-hero',
@@ -46,13 +44,16 @@ export class AddEditHeroComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<AddEditHeroComponent>);
   readonly data = inject<HeroI>(MAT_DIALOG_DATA);
   private readonly heroStore = inject(Store<{ hero: HeroState }>);
-
-  readonly animal = model('');
+  hasBeenEdited = signal<boolean>(false);
+  isValid = signal<boolean>(false);
 
   public heroForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
     state: new FormControl<boolean>(true),
-    age: new FormControl<number | null>(null, [Validators.required]),
+    age: new FormControl<number | null>(null, [
+      Validators.required,
+      Validators.pattern(REGEX_0_TO_120),
+    ]),
     description: new FormControl<string>(''),
     power: new FormControl<string>('', [Validators.required, Validators.minLength(3)]),
     id: new FormControl<number | null>(null),
@@ -72,6 +73,11 @@ export class AddEditHeroComponent implements OnInit {
     } else {
       this.isCreate.set(true);
     }
+
+    this.heroForm.statusChanges.subscribe((_val) => {
+      this.hasBeenEdited.set(true);
+      this.isValid.set(this.heroForm.valid);
+    });
   }
 
   onNoClick(): void {
@@ -79,6 +85,7 @@ export class AddEditHeroComponent implements OnInit {
   }
 
   onYesClick(): void {
+    this.heroForm.markAllAsTouched();
     if (this.heroForm.invalid) return;
 
     if (!this.heroForm.get('id')!.value) {

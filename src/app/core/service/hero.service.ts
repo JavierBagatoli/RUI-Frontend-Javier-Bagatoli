@@ -15,7 +15,7 @@ export class heroService extends ApiService<HeroI, HeroI> {
   }
 
   getHeroes(): Observable<HeroI[]> {
-    return of(this.heroes).pipe(delay(300));
+    return of(this.heroes).pipe(delay(700));
     /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
       next: (data) => data,

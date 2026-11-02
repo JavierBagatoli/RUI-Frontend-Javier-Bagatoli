@@ -3,7 +3,13 @@
     <button matButton="filled" (click)="openAddHero()">Agregar Heroe</button>
   </div>
   @if (dataTable().loading) {
-    <h2>loading</h2>
+    <div class="flex-col gap mt-3">
+      @for (item of [0, 1, 2, 3, 4]; track item) {
+        <div class="loader">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
+      }
+    </div>
   } @else {
     <hero-table [data]="dataTable().data"></hero-table>
   }
