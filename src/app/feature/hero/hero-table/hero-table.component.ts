@@ -1,6 +1,15 @@
-import { Component, inject, input, Input, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  Input,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AddEditHeroComponent } from '../add-edit-hero/add-edit-hero.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +26,13 @@ export class HeroTableComponent {
   displayedColumns: string[] = ['name', 'age', 'description', 'action'];
   readonly dialog = inject(MatDialog);
   data = input<HeroI[]>([]);
+  dataSource = computed(() => new MatTableDataSource<HeroI>(this.data()));
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource().paginator = this.paginator;
+  }
 
   openEditHero(hero: HeroI): void {
     const dialogRef = this.dialog.open(AddEditHeroComponent, {
