@@ -17,6 +17,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'hero-page',
@@ -29,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
     ɵInternalFormsSharedModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatIconModule,
   ],
   templateUrl: './hero-page.component.html',
   styleUrl: './hero-page.component.scss',
@@ -42,6 +44,7 @@ export class HeroPage implements OnInit {
     name: new FormControl<string | null>(''),
   });
   readonly canSearch = signal<boolean>(false);
+  readonly isFilterSearch = signal<boolean>(false);
 
   ngOnInit(): void {
     this.heroStore.dispatch(heroActions.getHeroes());
@@ -72,6 +75,12 @@ export class HeroPage implements OnInit {
     const nameToFilter: string | null = this.searchForm.get('name')!.value;
     if (!nameToFilter) return;
     this.searchForm.reset();
+    this.isFilterSearch.set(true);
     this.heroStore.dispatch(heroActions.filterHeroes({ data: nameToFilter as string }));
+  }
+
+  restartFilter(): void {
+    this.heroStore.dispatch(heroActions.getHeroes());
+    this.isFilterSearch.set(false);
   }
 }
