@@ -1,5 +1,4 @@
 <div class="flex-col">
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   @if (dataTable().loading) {
     <div class="flex-col gap mt-3">
       @for (item of [0, 1, 2, 3, 4]; track item) {
@@ -51,8 +50,9 @@
           Agregar Heroe
         </button>
       </div>
-
-      <hero-table [data]="dataTable().data!" [paginationControl]="pagination()"></hero-table>
+      <div class="overflow">
+        <hero-table [data]="dataTable().data!" [paginationControl]="pagination()"></hero-table>
+      </div>
     </section>
   }
 </div>
