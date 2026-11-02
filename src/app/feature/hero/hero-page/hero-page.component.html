@@ -1,7 +1,4 @@
 <div class="flex-col">
-  <div style="display: flex; flex-direction: row-reverse">
-    <button matButton="filled" (click)="openAddHero()">Agregar Heroe</button>
-  </div>
   @if (dataTable().loading) {
     <div class="flex-col gap mt-3">
       @for (item of [0, 1, 2, 3, 4]; track item) {
@@ -11,6 +8,30 @@
       }
     </div>
   } @else {
-    <hero-table [data]="dataTable().data"></hero-table>
+    <section class="flex-col gap">
+      <div class="flex-row gap" [formGroup]="searchForm" style="height: auto">
+        <mat-form-field style="width: 100%">
+          <mat-label>Filtrar por nombre:</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+        <div style="margin-top: 0.7rem">
+          <button
+            style="background-color: white"
+            matButton="outlined"
+            (click)="callSearch()"
+            [disabled]="!canSearch()"
+          >
+            Filtrar
+          </button>
+        </div>
+      </div>
+      <div>
+        <button style="display: flex; width: 100%" matButton="filled" (click)="openAddHero()">
+          Agregar Heroe
+        </button>
+      </div>
+
+      <hero-table [data]="dataTable().data"></hero-table>
+    </section>
   }
 </div>

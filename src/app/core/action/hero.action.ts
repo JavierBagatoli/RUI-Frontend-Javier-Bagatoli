@@ -10,6 +10,10 @@ export const heroActions = createActionGroup({
     'Get Heroes Success': props<{ data: HeroI[] }>(),
     'Get Heroes Error': props<genericErrorI>(),
 
+    'Filter Heroes': props<{ data: string }>(),
+    'Filter Heroes Success': props<{ data: HeroI[] }>(),
+    'Filter Heroes Error': props<genericErrorI>(),
+
     'Add Hero': props<{ data: HeroI }>(),
     'Add Hero Success': emptyProps(),
     'Add Hero Error': props<genericErrorI>(),

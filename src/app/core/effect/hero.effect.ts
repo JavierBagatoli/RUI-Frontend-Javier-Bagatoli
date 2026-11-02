@@ -37,6 +37,26 @@ export class HeroEffects {
     );
   });
 
+  getFilteredHeroes$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(heroActions.filterHeroes),
+      exhaustMap((val) =>
+        this.heroService.getFilteredHeroes(val.data).pipe(
+          map(
+            (data: HeroI[]) => heroActions.filterHeroesSuccess({ data: data }),
+            catchError(() => {
+              heroActions.filterHeroesError({
+                code: 1500,
+                info: '',
+              });
+              return EMPTY;
+            }),
+          ),
+        ),
+      ),
+    );
+  });
+
   addHeroe$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.addHero),

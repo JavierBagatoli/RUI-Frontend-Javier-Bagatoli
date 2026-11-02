@@ -23,6 +23,18 @@ export class heroService extends ApiService<HeroI, HeroI> {
     });*/
   }
 
+  getFilteredHeroes(name: string): Observable<HeroI[]> {
+    const filteredList: HeroI[] = this.heroes.filter((v) =>
+      v.name.toLowerCase().includes(name.toLowerCase()),
+    );
+    return of(filteredList).pipe(delay(700));
+    /* Ejemplo de como se usaria el API service
+    return this.get().subscribe({
+      next: (data) => data,
+      error: (error) => error,
+    });*/
+  }
+
   addHero(hero: HeroI) {
     const newHero: HeroI = { ...hero, id: this.heroes.length + 1 };
     console.log(this.heroes, newHero);

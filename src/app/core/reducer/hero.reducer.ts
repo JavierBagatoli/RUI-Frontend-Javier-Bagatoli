@@ -64,6 +64,39 @@ export const heroReducer = createReducer(
     };
   }),
 
+  on(heroActions.filterHeroes, (state): HeroState => {
+    return {
+      ...state,
+      getHeroes: {
+        data: [],
+        error: null,
+        loading: true,
+      },
+    };
+  }),
+
+  on(heroActions.filterHeroesSuccess, (state, { data }): HeroState => {
+    return {
+      ...state,
+      getHeroes: {
+        data: data,
+        error: null,
+        loading: false,
+      },
+    };
+  }),
+
+  on(heroActions.filterHeroesError, (state, { ...genericErrorI }): HeroState => {
+    return {
+      ...state,
+      getHeroes: {
+        data: [],
+        error: genericErrorI,
+        loading: false,
+      },
+    };
+  }),
+
   on(heroActions.addHero, (state): HeroState => {
     return {
       ...state,
