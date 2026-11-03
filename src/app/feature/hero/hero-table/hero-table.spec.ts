@@ -71,7 +71,7 @@ describe('HeroTableComponent', () => {
 
   describe('Init data', () => {
     it('should initialize displayedColumns correctly', () => {
-      expect(component.displayedColumns()).toEqual(['name', 'age', 'description', 'action']);
+      expect(component.displayedColumns()).toEqual(['name', 'description', 'action']);
       expect(component.totalSize()).toBe(1);
       expect(component.dataSource()).toEqual([mockHero]);
       expect(component.pageIndex()).toBe(0);

@@ -31,7 +31,7 @@ export class HeroTableComponent {
 
   pageIndex = signal<number>(0);
   pageSize = signal<number>(5);
-  displayedColumns = signal<string[]>(['name', 'age', 'description', 'action']);
+  displayedColumns = signal<string[]>(['name', 'description', 'action']);
 
   private readonly heroStore = inject(Store<HeroState>);
 
