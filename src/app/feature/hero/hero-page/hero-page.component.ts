@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, Input, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, Input, OnInit, signal } from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
 import { AddEditHeroComponent } from '../add-edit-hero/add-edit-hero.component';
 import { MatDialog, MatDialogContent } from '@angular/material/dialog';
@@ -49,6 +49,14 @@ export class HeroPage implements OnInit {
   readonly isFilterSearch = signal<boolean>(false);
 
   readonly pagination = this.heroStore.selectSignal(selectHeroDataPagination);
+
+  constructor() {
+    effect(() => {
+      this.dataTable().loading
+        ? this.searchForm.get('name')!.disable()
+        : this.searchForm.get('name')!.enable();
+    });
+  }
   ngOnInit(): void {
     this.heroStore.dispatch(heroActions.getHeroes({ data: { index: 0, size: 5 } }));
     this.searchForm.valueChanges.subscribe((_val) => {

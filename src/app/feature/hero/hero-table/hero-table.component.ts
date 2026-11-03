@@ -9,6 +9,7 @@ import { DeleteHeroComponent } from '../delete-hero/delete-hero.component';
 import { HeroState, pagination } from '../../../core/interface/hero.store.interface';
 import { Store } from '@ngrx/store';
 import { heroActions, paginationRequest } from '../../../core/action/hero.action';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'hero-table',
@@ -17,8 +18,10 @@ import { heroActions, paginationRequest } from '../../../core/action/hero.action
   styleUrl: './hero-table.component.scss',
 })
 export class HeroTableComponent {
-  displayedColumns: string[] = ['name', 'age', 'description', 'action'];
   readonly dialog = inject(MatDialog);
+  private breakpointObserver = inject(BreakpointObserver);
+  public esMovil = false;
+
   data = input<pagination<HeroI>>({
     vector: [],
     size: 0,
@@ -30,12 +33,19 @@ export class HeroTableComponent {
 
   pageIndex = signal<number>(0);
   pageSize = signal<number>(5);
+  displayedColumns = signal<string[]>(['name', 'age', 'description', 'action']);
 
   private readonly heroStore = inject(Store<HeroState>);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, '(max-width: 768px)'])
+      .subscribe((result) => {
+        this.displayedColumns.set(['name', 'description', 'action']);
+      });
+  }
 
   openEditHero(hero: HeroI): void {
     const dialogRef = this.dialog.open(AddEditHeroComponent, {
