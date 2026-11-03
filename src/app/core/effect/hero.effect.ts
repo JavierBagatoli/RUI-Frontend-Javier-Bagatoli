@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { heroService } from '../service/hero.service';
 import { heroActions } from '../action/hero.action';
@@ -19,13 +19,14 @@ export class HeroEffects {
         this.heroService.getHeroes(val.data).pipe(
           map(
             (data: pagination<HeroI>) => heroActions.getHeroesSuccess({ data }),
-            catchError(() => {
-              heroActions.getHeroesError({
-                code: 1500,
-                info: '',
-              });
-              return EMPTY;
-            }),
+            catchError(() =>
+              of(
+                heroActions.getHeroesError({
+                  code: 1500,
+                  info: '',
+                }),
+              ),
+            ),
           ),
         ),
       ),
@@ -43,13 +44,14 @@ export class HeroEffects {
         this.heroService.getHeroes({ size: 5, index: 0 }).pipe(
           map(
             (data: pagination<HeroI>) => heroActions.getHeroesSuccess({ data: data }),
-            catchError(() => {
-              heroActions.getHeroesError({
-                code: 1500,
-                info: '',
-              });
-              return EMPTY;
-            }),
+            catchError(() =>
+              of(
+                heroActions.getHeroesError({
+                  code: 1500,
+                  info: '',
+                }),
+              ),
+            ),
           ),
         ),
       ),
@@ -63,50 +65,53 @@ export class HeroEffects {
         this.heroService.getFilteredHeroes(val.data).pipe(
           map(
             (data: pagination<HeroI>) => heroActions.filterHeroesSuccess({ data: data }),
-            catchError(() => {
-              heroActions.filterHeroesError({
-                code: 1500,
-                info: '',
-              });
-              return EMPTY;
-            }),
+            catchError(() =>
+              of(
+                heroActions.filterHeroesError({
+                  code: 1500,
+                  info: '',
+                }),
+              ),
+            ),
           ),
         ),
       ),
     );
   });
 
-  addHeroe$ = createEffect(() => {
+  addHero$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.addHero),
       exhaustMap((val: genericAction<HeroI>) =>
         this.heroService.addHero(val.data).pipe(
           map((data) => heroActions.addHeroSuccess()),
-          catchError(() => {
-            heroActions.addHeroError({
-              code: 1500,
-              info: '',
-            });
-            return EMPTY;
-          }),
+          catchError(() =>
+            of(
+              heroActions.addHeroError({
+                code: 1500,
+                info: '',
+              }),
+            ),
+          ),
         ),
       ),
     );
   });
 
-  updateHeroe$ = createEffect(() => {
+  updateHero$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(heroActions.updateHero),
       exhaustMap((val: genericAction<HeroI>) =>
         this.heroService.updateHero(val.data).pipe(
           map((data) => heroActions.updateHeroSuccess()),
-          catchError(() => {
-            heroActions.updateHeroError({
-              code: 1500,
-              info: '',
-            });
-            return EMPTY;
-          }),
+          catchError(() =>
+            of(
+              heroActions.updateHeroError({
+                code: 1500,
+                info: '',
+              }),
+            ),
+          ),
         ),
       ),
     );
@@ -118,13 +123,14 @@ export class HeroEffects {
       exhaustMap((val: genericAction<number>) =>
         this.heroService.deleteHero(val.data).pipe(
           map((_data) => heroActions.deleteHeroSuccess()),
-          catchError(() => {
-            heroActions.deleteHeroError({
-              code: 1500,
-              info: '',
-            });
-            return EMPTY;
-          }),
+          catchError(() =>
+            of(
+              heroActions.deleteHeroError({
+                code: 1500,
+                info: '',
+              }),
+            ),
+          ),
         ),
       ),
     );

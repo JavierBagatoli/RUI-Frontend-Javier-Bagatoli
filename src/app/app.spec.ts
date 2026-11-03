@@ -1,12 +1,19 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { provideMockStore } from '@ngrx/store/testing';
+import { MOCK_STORE_HERO } from './const.spec';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideZonelessChangeDetection()]
+      providers: [
+        provideMockStore({
+          initialState: { hero: MOCK_STORE_HERO },
+        }),
+        provideZonelessChangeDetection(),
+      ],
     }).compileComponents();
   });
 
@@ -20,6 +27,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, RUI-Frontend-Javier-Bagatoli');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Heroes Registrados');
   });
 });

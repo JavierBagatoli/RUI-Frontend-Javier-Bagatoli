@@ -25,13 +25,8 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button matButton (click)="onNoClick()">Descartar</button>
-  <button
-    matButton
-    (click)="onYesClick()"
-    cdkFocusInitial
-    [disabled]="!hasBeenEdited() || !isValid()"
-  >
+  <button matButton (click)="onNoClick()" cdkFocusInitial>Descartar</button>
+  <button matButton (click)="onYesClick()" [disabled]="!hasBeenEdited() || !isValid()">
     {{ isCreate() ? 'Crear' : 'Editar' }}
   </button>
 </mat-dialog-actions>
