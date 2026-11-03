@@ -55,7 +55,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 0,
+    id: 6,
   },
   {
     name: 'Batman 2',
@@ -63,7 +63,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 1,
+    id: 7,
   },
   {
     name: 'Wonder Woman 2',
@@ -71,7 +71,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 2,
+    id: 8,
   },
   {
     name: 'Hal Jordan 2',
@@ -79,7 +79,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 3,
+    id: 9,
   },
   {
     name: 'Flash 2',
@@ -87,7 +87,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 4,
+    id: 10,
   },
   {
     name: 'Aquaman 2',
@@ -95,7 +95,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 5,
+    id: 11,
   },
 
   {
@@ -104,7 +104,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 0,
+    id: 12,
   },
   {
     name: 'Batman 3',
@@ -112,7 +112,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 1,
+    id: 13,
   },
   {
     name: 'Wonder Woman 3',
@@ -120,7 +120,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 2,
+    id: 14,
   },
   {
     name: 'Hal Jordan 3',
@@ -128,7 +128,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 3,
+    id: 15,
   },
   {
     name: 'Flash 3',
@@ -136,7 +136,7 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 4,
+    id: 16,
   },
   {
     name: 'Aquaman 3',
@@ -144,6 +144,6 @@ export const HEROES: HeroI[] = [
     age: 30,
     description: 'string',
     power: 'volar',
-    id: 5,
+    id: 17,
   },
 ];

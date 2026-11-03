@@ -21,9 +21,10 @@ export class heroService extends ApiService<HeroI, HeroI> {
     const size = Math.max(0, Math.floor(data.size ?? 0));
     const start = Math.min(index * size, this.heroes.length);
     const end = Math.min(index * size + size, this.heroes.length);
-    const dataFiltered = this.heroes.slice(start, end);
+    const heroesACtives = this.heroes.filter((h) => h.state);
+    const dataFiltered = heroesACtives.slice(start, end);
 
-    return of({ vector: dataFiltered, size: this.heroes.length }).pipe(delay(700));
+    return of({ vector: dataFiltered, size: heroesACtives.length }).pipe(delay(700));
     /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
       next: (data) => data,
@@ -32,9 +33,9 @@ export class heroService extends ApiService<HeroI, HeroI> {
   }
 
   getFilteredHeroes(name: string): Observable<pagination<HeroI>> {
-    const filteredList: HeroI[] = this.heroes.filter((v) =>
-      v.name.toLowerCase().includes(name.toLowerCase()),
-    );
+    const filteredList: HeroI[] = this.heroes
+      .filter((h) => h.state)
+      .filter((v) => v.name.toLowerCase().includes(name.toLowerCase()));
     return of({ vector: filteredList, size: this.heroes.length }).pipe(delay(700));
     /* Ejemplo de como se usaria el API service
     return this.get().subscribe({
@@ -45,7 +46,7 @@ export class heroService extends ApiService<HeroI, HeroI> {
 
   addHero(hero: HeroI) {
     const newHero: HeroI = { ...hero, id: this.heroes.length + 1 };
-    console.log(this.heroes, newHero);
+
     this.heroes = [...this.heroes, newHero];
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
@@ -56,13 +57,13 @@ export class heroService extends ApiService<HeroI, HeroI> {
   }
 
   updateHero(hero: HeroI) {
-    console.log('hola', hero);
     this.heroes = this.heroes.map((h) => {
       if (h.id === hero.id) {
         h = hero;
       }
       return h;
     });
+    console.table(this.heroes);
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.put(hero).subscribe({
@@ -72,7 +73,13 @@ export class heroService extends ApiService<HeroI, HeroI> {
   }
 
   deleteHero(id: number) {
-    this.heroes = this.heroes.filter((v) => v.id !== id);
+    this.heroes = this.heroes.map((h) => {
+      if (h.id === id) {
+        return { ...h, state: false };
+      } else {
+        return h;
+      }
+    });
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.delete(id).subscribe({
