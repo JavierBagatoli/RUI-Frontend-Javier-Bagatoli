@@ -13,9 +13,6 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Store } from '@ngrx/store';
-import { HeroState } from '../../../core/interface/hero.store.interface';
-import { heroActions } from '../../../core/action/hero.action';
 
 @Component({
   selector: 'delete-hero',
@@ -33,14 +30,12 @@ import { heroActions } from '../../../core/action/hero.action';
 export class DeleteHeroComponent {
   readonly dialogRef = inject(MatDialogRef<DeleteHeroComponent>);
   readonly data = inject<HeroI>(MAT_DIALOG_DATA);
-  private readonly heroStore = inject(Store<{ hero: HeroState }>);
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   onYesClick(): void {
-    this.heroStore.dispatch(heroActions.deleteHero({ data: this.data.id as number }));
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }
