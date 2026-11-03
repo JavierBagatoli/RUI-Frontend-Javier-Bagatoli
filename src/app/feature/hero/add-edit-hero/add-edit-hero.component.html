@@ -1,9 +1,11 @@
-<h2 mat-dialog-title>{{ isCreate() ? 'Crear nuevo Heroe' : `Editar a ${nameHero()}` }}</h2>
+<h2 mat-dialog-title>
+  {{ isCreate() ? 'Crear nuevo Heroe' : `Editar a ${nameHero().toUpperCase()}` }}
+</h2>
 <mat-dialog-content>
   <div class="flex-col" [formGroup]="heroForm">
     <mat-form-field>
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="name" />
+      <input matInput toUppercase formControlName="name" />
     </mat-form-field>
 
     <mat-form-field>
