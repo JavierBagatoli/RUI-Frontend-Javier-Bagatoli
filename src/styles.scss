@@ -35,7 +35,7 @@ body {
 
 body {
   margin: 0;
-  padding: 1rem;
+  padding: 0rem 1rem;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   display: flex;
   height: 1 !important;
@@ -50,7 +50,12 @@ body {
 
 main {
   margin: 0rem;
-  padding: 0rem;
+  padding: 1rem;
+  background-color: white;
+  height: auto;
+  min-height: 35rem;
+  width: auto;
+  min-width: 25rem;
 }
 
 @keyframes gradient-shift {

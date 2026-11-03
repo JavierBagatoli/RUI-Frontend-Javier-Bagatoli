@@ -9,18 +9,16 @@ import { DeleteHeroComponent } from '../delete-hero/delete-hero.component';
 import { HeroState, pagination } from '../../../core/interface/hero.store.interface';
 import { Store } from '@ngrx/store';
 import { heroActions, paginationRequest } from '../../../core/action/hero.action';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'hero-table',
-  imports: [MatTableModule, MatButtonModule, MatPaginator, MatPaginatorModule],
+  imports: [MatTableModule, MatButtonModule, MatPaginator, MatPaginatorModule, MatIcon],
   templateUrl: './hero-table.component.html',
   styleUrl: './hero-table.component.scss',
 })
 export class HeroTableComponent {
   readonly dialog = inject(MatDialog);
-  private breakpointObserver = inject(BreakpointObserver);
-  public esMovil = false;
 
   data = input<pagination<HeroI>>({
     vector: [],
@@ -38,14 +36,6 @@ export class HeroTableComponent {
   private readonly heroStore = inject(Store<HeroState>);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.breakpointObserver
-      .observe([Breakpoints.Handset, '(max-width: 768px)'])
-      .subscribe((result) => {
-        this.displayedColumns.set(['name', 'description', 'action']);
-      });
-  }
 
   openEditHero(hero: HeroI): void {
     const dialogRef = this.dialog.open(AddEditHeroComponent, {

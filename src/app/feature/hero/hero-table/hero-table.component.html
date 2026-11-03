@@ -26,8 +26,12 @@
         >
           Editar
         </button>
-        <button matButton="text" class="button-error" (click)="openDeleteHero(element)">
-          Borrar
+        <button
+          matIconButton
+          class="button-error no-Style-button"
+          (click)="openDeleteHero(element)"
+        >
+          <mat-icon aria-hidden="false" aria-label="Restart filter" fontIcon="delete"></mat-icon>
         </button>
       </section>
     </td>
