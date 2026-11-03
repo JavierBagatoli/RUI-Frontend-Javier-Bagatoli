@@ -83,7 +83,6 @@ export class AddEditHeroComponent implements OnInit {
   onYesClick(): void {
     this.heroForm.markAllAsTouched();
     if (this.heroForm.invalid) return;
-    if (!this.heroForm.valid) return;
 
     this.dialogRef.close(this.heroForm.value as HeroI);
   }

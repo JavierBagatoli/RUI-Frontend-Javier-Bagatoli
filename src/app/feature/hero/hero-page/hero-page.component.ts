@@ -68,11 +68,9 @@ export class HeroPage implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: HeroI) => {
       if (result !== undefined) {
-        console.log(result);
-        if (!result.id!) {
+        if (result?.id === null) {
           this.heroStore.dispatch(heroActions.addHero({ data: result }));
-        } else {
-          this.heroStore.dispatch(heroActions.updateHero({ data: result }));
+          return;
         }
       }
     });

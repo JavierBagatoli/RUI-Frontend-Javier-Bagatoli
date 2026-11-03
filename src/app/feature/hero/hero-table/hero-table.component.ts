@@ -1,21 +1,11 @@
-import {
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  Input,
-  signal,
-  ViewChild,
-} from '@angular/core';
+import { Component, computed, inject, input, signal, ViewChild } from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { AddEditHeroComponent } from '../add-edit-hero/add-edit-hero.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { DeleteHeroComponent } from '../delete-hero/delete-hero.component';
-import { timeInterval } from 'rxjs';
 import { HeroState, pagination } from '../../../core/interface/hero.store.interface';
 import { Store } from '@ngrx/store';
 import { heroActions, paginationRequest } from '../../../core/action/hero.action';
@@ -54,7 +44,7 @@ export class HeroTableComponent {
 
     dialogRef.afterClosed().subscribe((result: HeroI) => {
       if (result !== undefined) {
-        console.log(result);
+        this.heroStore.dispatch(heroActions.updateHero({ data: result }));
       }
     });
   }
@@ -65,8 +55,8 @@ export class HeroTableComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: HeroI) => {
-      if (result !== undefined) {
-        console.log(result);
+      if (result) {
+        this.heroStore.dispatch(heroActions.deleteHero({ data: hero.id as number }));
       }
     });
   }
