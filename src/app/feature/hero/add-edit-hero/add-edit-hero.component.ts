@@ -17,9 +17,6 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Store } from '@ngrx/store';
-import { HeroState } from '../../../core/interface/hero.store.interface';
-import { heroActions } from '../../../core/action/hero.action';
 import { HeroEffects } from '../../../core/effect/hero.effect';
 import { REGEX_0_TO_120 } from '../../../core/regex/regex.const';
 
@@ -43,7 +40,6 @@ export class AddEditHeroComponent implements OnInit {
   protected isCreate = signal<boolean>(true);
   readonly dialogRef = inject(MatDialogRef<AddEditHeroComponent>);
   readonly data = inject<HeroI>(MAT_DIALOG_DATA);
-  private readonly heroStore = inject(Store<{ hero: HeroState }>);
   hasBeenEdited = signal<boolean>(false);
   isValid = signal<boolean>(false);
 
@@ -87,17 +83,9 @@ export class AddEditHeroComponent implements OnInit {
   onYesClick(): void {
     this.heroForm.markAllAsTouched();
     if (this.heroForm.invalid) return;
+    if (!this.heroForm.valid) return;
 
-    if (!this.heroForm.get('id')!.value) {
-      if (this.heroForm.valid) {
-        this.heroStore.dispatch(heroActions.addHero({ data: this.heroForm.value as HeroI }));
-      }
-      this.dialogRef.close();
-      return;
-    }
-
-    this.heroStore.dispatch(heroActions.updateHero({ data: this.heroForm.value as HeroI }));
-    this.dialogRef.close();
+    this.dialogRef.close(this.heroForm.value as HeroI);
   }
 
   private loadDataForm(): void {

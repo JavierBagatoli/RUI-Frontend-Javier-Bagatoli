@@ -67,9 +67,13 @@ export class HeroPage implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: HeroI) => {
-      console.log('The dialog was closed');
       if (result !== undefined) {
         console.log(result);
+        if (!result.id!) {
+          this.heroStore.dispatch(heroActions.addHero({ data: result }));
+        } else {
+          this.heroStore.dispatch(heroActions.updateHero({ data: result }));
+        }
       }
     });
   }
