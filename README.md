@@ -51,3 +51,11 @@ Si No
 =================
 Los datos seran almacenados en la chace del programa, pero se leen desde un JSON al iniciar.
 Se agregara un timing para simular las latencias entre un front y back.
+
+# Como ejecutar
+
+1. Descargar el proyecto en local.
+2. Disponer de docker en el dispositivo.
+3. Crear la imagen de docker con: "docker build -t riu-frontend-javier-bagatoli ."
+4. Correr el contenedor con: "docker run -p 8080:80 riu-frontend-javier-bagatoli:latest"
+5. Conectarse a "http://localhost:80"
