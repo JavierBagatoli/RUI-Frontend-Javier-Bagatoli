@@ -59,11 +59,10 @@ export class heroService extends ApiService<HeroI, HeroI> {
   updateHero(hero: HeroI) {
     this.heroes = this.heroes.map((h) => {
       if (h.id === hero.id) {
-        h = hero;
+        return hero;
       }
       return h;
     });
-    console.table(this.heroes);
     return of({ code: 200, info: 'success' }).pipe(delay(300));
     /* Ejemplo de como se usaria el API service
     return this.put(hero).subscribe({

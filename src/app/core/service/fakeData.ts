@@ -6,7 +6,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: 'Volar y Vision de calor',
     id: 0,
   },
   {
@@ -14,7 +14,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: 'Dinero',
     id: 1,
   },
   {
@@ -22,7 +22,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: 'Invulnerable',
     id: 2,
   },
   {
@@ -30,7 +30,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: 'Anillo de poder',
     id: 3,
   },
   {
@@ -38,7 +38,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: 'Super Velocidad',
     id: 4,
   },
   {
@@ -46,7 +46,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: 'Vivir bajo el agua',
     id: 5,
   },
   {

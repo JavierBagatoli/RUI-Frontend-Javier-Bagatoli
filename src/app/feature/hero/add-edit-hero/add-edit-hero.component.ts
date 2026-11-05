@@ -87,11 +87,11 @@ export class AddEditHeroComponent implements OnInit {
     if (this.heroForm.invalid) return;
 
     const cleanData: HeroI = {
-      ...this.data,
-      name: this.data.name.trim(),
-      power: this.data.power.trim(),
-      description: this.data.description.trim(),
-    };
+      ...this.heroForm.value,
+      name: this.heroForm.value.name!.trim(),
+      power: this.heroForm.value.power!.trim(),
+      description: this.heroForm.value.description!.trim(),
+    } as HeroI;
 
     this.dialogRef.close(cleanData);
   }
