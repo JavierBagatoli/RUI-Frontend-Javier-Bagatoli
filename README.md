@@ -27,6 +27,7 @@ name: string,
 state: boolean,
 age: number,
 description: string,
+power: string,
 id: number,
 
 ### Paginas
@@ -39,14 +40,15 @@ id: number,
 #### Dialog Add Hero
 
 Add Hero / Edit Hero
-name
-age
+name -> logintud minima de 5 caracteres
+age -> Validar que sea un numero comprendido entre 0 y 120
+power -> longitud minima de 3 caracteres
 description
 
 #### Dialog Delete
 
 ¿Desea borrar _Nombre_?
-Si No
+Descartar Continuar
 
 =================
 Los datos seran almacenados en la chace del programa, pero se leen desde un JSON al iniciar.
