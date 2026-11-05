@@ -1,5 +1,5 @@
-import { paginationRequest } from '../action/hero.action';
 import { HeroI } from './hero.interface';
+import { paginationRequest } from './pagination.interface';
 
 export interface HeroState {
   paginationHeroes: paginationRequest;

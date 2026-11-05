@@ -4,8 +4,8 @@ import { HeroI } from '../interface/hero.interface';
 import { ApiService } from './api.service';
 import { HEROES } from './fakeData';
 import { delay, Observable, of } from 'rxjs';
-import { paginationRequest } from '../action/hero.action';
 import { pagination } from '../interface/hero.store.interface';
+import { paginationRequest } from '../interface/pagination.interface';
 
 @Injectable({
   providedIn: 'root',
