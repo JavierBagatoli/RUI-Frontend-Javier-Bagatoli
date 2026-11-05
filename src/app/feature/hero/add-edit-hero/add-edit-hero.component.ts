@@ -86,7 +86,14 @@ export class AddEditHeroComponent implements OnInit {
     this.heroForm.markAllAsTouched();
     if (this.heroForm.invalid) return;
 
-    this.dialogRef.close(this.heroForm.value as HeroI);
+    const cleanData: HeroI = {
+      ...this.data,
+      name: this.data.name.trim(),
+      power: this.data.power.trim(),
+      description: this.data.description.trim(),
+    };
+
+    this.dialogRef.close(cleanData);
   }
 
   private loadDataForm(): void {

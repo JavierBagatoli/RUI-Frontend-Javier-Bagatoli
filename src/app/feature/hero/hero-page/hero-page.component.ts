@@ -89,7 +89,7 @@ export class HeroPage implements OnInit {
     if (!nameToFilter) return;
     this.searchForm.reset();
     this.isFilterSearch.set(true);
-    this.heroStore.dispatch(heroActions.filterHeroes({ data: nameToFilter as string }));
+    this.heroStore.dispatch(heroActions.filterHeroes({ data: (nameToFilter as string).trim() }));
   }
 
   restartFilter(): void {
