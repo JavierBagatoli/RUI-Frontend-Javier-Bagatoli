@@ -54,7 +54,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 6,
   },
   {
@@ -62,7 +62,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 7,
   },
   {
@@ -70,7 +70,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 8,
   },
   {
@@ -78,7 +78,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 9,
   },
   {
@@ -86,7 +86,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 10,
   },
   {
@@ -94,7 +94,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 11,
   },
 
@@ -103,7 +103,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 12,
   },
   {
@@ -111,7 +111,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 13,
   },
   {
@@ -119,7 +119,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 14,
   },
   {
@@ -127,7 +127,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 15,
   },
   {
@@ -135,7 +135,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 16,
   },
   {
@@ -143,7 +143,7 @@ export const HEROES: HeroI[] = [
     state: true,
     age: 30,
     description: 'string',
-    power: 'volar',
+    power: '-',
     id: 17,
   },
 ];
