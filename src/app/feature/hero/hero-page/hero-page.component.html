@@ -47,6 +47,11 @@
         <div class="flex-row w-100" style="justify-content: center; margin-top: 10rem">
           <mat-spinner></mat-spinner>
         </div>
+      } @else if (dataTable().error) {
+        <div>
+          <h2>Se ha producido un error</h2>
+          <p>Contacte con soporte técnico para conseguir más ayuda</p>
+        </div>
       } @else if (dataTable().data!.vector.length === 0) {
         <h2>No hay datos</h2>
       } @else {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, Input, model, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { HeroI } from '../../../core/interface/hero.interface';
 import {
   FormControl,
@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HeroEffects } from '../../../core/effect/hero.effect';
 import { REGEX_0_TO_120 } from '../../../core/regex/regex.const';
+import { UppercaseDirective } from '../../../core/directives//input-uppercase.directive';
 
 @Component({
   selector: 'add-edit-hero',
@@ -31,6 +32,7 @@ import { REGEX_0_TO_120 } from '../../../core/regex/regex.const';
     MatDialogContent,
     MatDialogActions,
     ReactiveFormsModule,
+    UppercaseDirective,
   ],
   templateUrl: './add-edit-hero.component.html',
   styleUrl: './add-edit-hero.component.scss',
