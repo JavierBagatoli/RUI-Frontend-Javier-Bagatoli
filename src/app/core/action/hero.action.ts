@@ -1,6 +1,7 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { HeroI } from '../interface/hero.interface';
 import { genericErrorI, pagination } from '../interface/hero.store.interface';
+import { paginationRequest } from '../interface/pagination.interface';
 
 export const heroActions = createActionGroup({
   source: 'Hero',
@@ -29,8 +30,3 @@ export const heroActions = createActionGroup({
     'Delete Hero Error': props<genericErrorI>(),
   },
 });
-
-export interface paginationRequest {
-  index: number;
-  size: number;
-}

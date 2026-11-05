@@ -8,8 +8,9 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
 import { DeleteHeroComponent } from '../delete-hero/delete-hero.component';
 import { HeroState, pagination } from '../../../core/interface/hero.store.interface';
 import { Store } from '@ngrx/store';
-import { heroActions, paginationRequest } from '../../../core/action/hero.action';
+import { heroActions } from '../../../core/action/hero.action';
 import { MatIcon } from '@angular/material/icon';
+import { paginationRequest } from '../../../core/interface/pagination.interface';
 
 @Component({
   selector: 'hero-table',
